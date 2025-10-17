@@ -3,21 +3,26 @@ using namespace std;
 
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+// Defines a class for the Doublylinkedlist
 class DoublyLinkedList {
 private:
+//each node in the list will have a value and have two pointers
 struct Node {
 int data;
-Node* prev;
-Node* next;
+Node* prev; // will point to the node before this 
+Node* next; // points to the node after this one 
+
+// This is a constructor that sets up a new node
 Node(int val, Node* p = nullptr, Node* n = nullptr) {
 data = val;
 prev = p;
 next = n;
 }
 };
-Node* head;
-Node* tail;
+Node* head; // will point to the first node in the list 
+Node* tail; // will point to the last node of the list
 public:
+// This is a contructor that will set up an empty list
 DoublyLinkedList() { head = nullptr; tail = nullptr; }
 void insert_after(int value, int position) {
 if (position < 0) {
@@ -174,6 +179,9 @@ cout << endl;
 };
 int main() {
 cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid
+
 compiler warning
+
 return 0;
+
 }
