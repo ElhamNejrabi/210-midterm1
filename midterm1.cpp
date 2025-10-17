@@ -214,7 +214,30 @@ current = current->prev;
 }
 cout << endl;
 }
+
+ // ADDED THE NEW METHOD: prints every other element
+    void every_other_element() {
+        Node* current = head; // start at the first node
+        bool skip = false;    // used to decide whether to print or skip
+
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+        }
+
+        cout << "Every other element: ";
+        while (current) {
+            if (!skip) {
+                cout << current->data << " "; // print this one
+            }
+            skip = !skip; // flip skip each time
+            current = current->next; // move to next node
+        }
+        cout << endl;
+    }
 };
+
+
 
 // just a main function to avoid the warnings 
 int main() {
