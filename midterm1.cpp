@@ -237,14 +237,25 @@ cout << endl;
     }
 };
 
-
-
-// just a main function to avoid the warnings 
+// main to test our list
 int main() {
-cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid
+    DoublyLinkedList list; // make a new list
 
-compiler warning
+    // add some numbers to the list
+    list.push_back(10);
+    list.push_back(20);
+    list.push_back(30);
+    list.push_back(40);
+    list.push_back(50);
 
-return 0;
+    // show the list
+    cout << "Full list: ";
+    list.print();
 
+    // now call the new function
+    list.every_other_element(); // should print 10, 30, 50
+
+    return 0;
 }
+
+
