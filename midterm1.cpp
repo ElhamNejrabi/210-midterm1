@@ -1,71 +1,90 @@
-#include <iostream>
+#include <iostream> // lets us use cout and cin 
 using namespace std;
 
-
+// just seetting up some constants 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 // Defines a class for the Doublylinkedlist
 class DoublyLinkedList {
 private:
 //each node in the list will have a value and have two pointers
 struct Node {
-int data;
+int data; // stores the value
 Node* prev; // will point to the node before this 
 Node* next; // points to the node after this one 
 
 // This is a constructor that sets up a new node
 Node(int val, Node* p = nullptr, Node* n = nullptr) {
-data = val;
-prev = p;
-next = n;
+data = val; // sets the data
+prev = p;  //setting previous pointer 
+next = n; // setting the next pointer
 }
 };
 Node* head; // will point to the first node in the list 
 Node* tail; // will point to the last node of the list
 public:
 // This is a contructor that will set up an empty list
-DoublyLinkedList() { head = nullptr; tail = nullptr; }
+DoublyLinkedList()
+ { head = nullptr; 
+tail = nullptr; }
+//inserts a value after a certain position in the list
 void insert_after(int value, int position) {
 if (position < 0) {
 cout << "Position must be >= 0." << endl;
 return;
 }
-Node* newNode = new Node(value);
+Node* newNode = new Node(value); // makes a new node
+
+// if the list is empty just add to head and tail
 if (!head) {
 head = tail = newNode;
 return;
 }
+
+//goes to the position 
+
 Node* temp = head;
 for (int i = 0; i < position && temp; ++i)
 temp = temp->next;
+
+//if position is too far then this displays
 if (!temp) {
 cout << "Position exceeds list size. Node not inserted.\n";
 delete newNode;
 return;
 }
+// connects the new node between temp and the temp->next
 newNode->next = temp->next;
 newNode->prev = temp;
 if (temp->next)
 temp->next->prev = newNode;
 else
-tail = newNode;
+tail = newNode; //new node is the last one now
 temp->next = newNode;
 }
+
+// deletes the first node with the given value
 void delete_val(int value) {
-if (!head) return;
+if (!head) return;  // an empty list
 Node* temp = head;
+
+// finds the node with that value
 while (temp && temp->data != value)
 temp = temp->next;
-if (!temp) return;
+if (!temp) return; // the value is not found
+
+// connects around the node
 if (temp->prev)
 temp->prev->next = temp->next;
 else
-head = temp->next;
+head = temp->next; // if deleting the first node 
 if (temp->next)
-temp->next->prev = temp->prev;
+temp->next->prev = temp->prev; 
 else
-tail = temp->prev;
-delete temp;
+tail = temp->prev; // deleting the last node
+delete temp; // deletes the node
 }
+
+
 void delete_pos(int pos) {
 if (!head) {
 cout << "List is empty." << endl;
